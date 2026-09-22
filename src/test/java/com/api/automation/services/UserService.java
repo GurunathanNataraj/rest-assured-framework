@@ -33,4 +33,21 @@ public class UserService {
                 .when()
                 .put(Endpoints.USERS + "/" + userId);
     }
+
+    public Response deleteUser(int userId) {
+        return RestAssured
+                .given()
+                .spec(RequestSpec.getRequestSpec())
+                .when()
+                .delete(Endpoints.USERS + "/" + userId);
+    }
+
+    public Response patchUser(int userId, User user) {
+        return RestAssured
+                .given()
+                .spec(RequestSpec.getRequestSpec())
+                .body(user)
+                .when()
+                .patch(Endpoints.USERS + "/" + userId);
+    }
 }

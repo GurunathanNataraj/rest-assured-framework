@@ -60,7 +60,7 @@ public class UserAPITest extends BaseTest {
     }
 
     @Test
-    public void updateUser() {
+    public void updateUserTest() {
         User updateUser = JsonUtils.readJsonFile("testdata/users/user_update.json", User.class);
         Response response = userService.updateUser(1,updateUser);
         response.then().spec(ResponseSpec.statusCode200());
@@ -68,4 +68,22 @@ public class UserAPITest extends BaseTest {
         assertEquals(updatedUser.getName(),updateUser.getName());
         assertEquals(updatedUser.getAddress().getStreet(), updateUser.getAddress().getStreet());
     }
+
+    @Test
+    public void deleteUserTest() {
+        Response response = userService.deleteUser(1);
+        response.then()
+                .spec(ResponseSpec.statusCode200());
+    }
+
+    @Test
+    public void patchUserTest() {
+        User patchRequestUser = JsonUtils.readJsonFile("testdata/users/user_patch.json", User.class);
+        Response response = userService.patchUser(1, patchRequestUser);
+        response.then()
+                .spec(ResponseSpec.statusCode200());
+        User patchedUser = response.as(User.class);
+        assertEquals(patchedUser.getName(), patchRequestUser.getName());
+    }
+
 }
