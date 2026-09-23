@@ -23,6 +23,10 @@ public class ConfigManager {
         if (systemProperty != null && !systemProperty.isBlank()) {
             return systemProperty;
         }
-        return properties.getProperty(key);
+        String value = properties.getProperty(key);
+        if(value == null || value.isBlank()) {
+            throw new RuntimeException("Missing config property : "+key);
+        }
+        return value;
    }
 }
