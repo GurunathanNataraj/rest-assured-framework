@@ -13,7 +13,7 @@ public class RequestSpec {
                 .setContentType("application/json")
                 .setAccept("application/json")
                 .addHeader("X-Client-Name", "API-Automation");
-     boolean isLoggingEnabled = Boolean.parseBoolean(ConfigManager.getProperty("request.logging.enabled"));
+     boolean isLoggingEnabled = ConfigManager.getBooleanProperty("request.logging.enabled");
 
      if(isLoggingEnabled) {
          builder.log(LogDetail.ALL);

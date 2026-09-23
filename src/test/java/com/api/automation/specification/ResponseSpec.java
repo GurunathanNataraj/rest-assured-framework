@@ -10,7 +10,7 @@ public class ResponseSpec {
     private static ResponseSpecBuilder getBaseResponseSpec() {
         ResponseSpecBuilder builder = new ResponseSpecBuilder();
 
-        boolean isLoggingEnabled = Boolean.parseBoolean(ConfigManager.getProperty("response.logging.enabled"));
+        boolean isLoggingEnabled =ConfigManager.getBooleanProperty("response.logging.enabled");
         if (isLoggingEnabled) {
             builder.log(LogDetail.ALL);
         }

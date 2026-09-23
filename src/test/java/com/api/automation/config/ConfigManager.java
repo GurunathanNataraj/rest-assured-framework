@@ -29,4 +29,16 @@ public class ConfigManager {
         }
         return value;
    }
+
+   public static Boolean getBooleanProperty(String key) {
+      return Boolean.parseBoolean(getProperty(key));
+   }
+
+   public static Integer getIntProperty(String key) {
+       return Integer.parseInt(getProperty(key));
+   }
+
+   public static Long getLongProperty(String key) {
+       return Long.parseLong(getProperty(key));
+   }
 }
