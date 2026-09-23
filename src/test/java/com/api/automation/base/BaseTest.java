@@ -8,7 +8,8 @@ public class BaseTest {
 
     @BeforeSuite
     public void setup() {
-        RestAssured.baseURI = ConfigManager.getProperty("base.url");
+        String env = ConfigManager.getProperty("env");
+        RestAssured.baseURI = ConfigManager.getProperty(env + ".base.url");
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
     }
 }
