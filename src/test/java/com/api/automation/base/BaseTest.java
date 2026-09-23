@@ -9,5 +9,6 @@ public class BaseTest {
     @BeforeSuite
     public void setup() {
         RestAssured.baseURI = ConfigManager.getProperty("base.url");
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
     }
 }

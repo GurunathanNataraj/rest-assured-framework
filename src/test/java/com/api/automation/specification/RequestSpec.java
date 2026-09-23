@@ -2,6 +2,7 @@ package com.api.automation.specification;
 
 import com.api.automation.auth.AuthManager;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.LogDetail;
 import io.restassured.specification.RequestSpecification;
 
 public class RequestSpec {
@@ -10,6 +11,7 @@ public class RequestSpec {
                 .setContentType("application/json")
                 .setAccept("application/json")
                 .addHeader("X-Client-Name","API-Automation")
+                .log(LogDetail.ALL)
                 .build();
     }
 
@@ -19,6 +21,7 @@ public class RequestSpec {
                 .setAccept("application/json")
                 .addHeader("X-Client-Name","API-Automation")
                 .addHeader("Authorization","Bearer "+ AuthManager.getToken())
+                .log(LogDetail.ALL)
                 .build();
     }
 }
