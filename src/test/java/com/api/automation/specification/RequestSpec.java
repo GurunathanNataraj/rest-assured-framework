@@ -6,22 +6,22 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.specification.RequestSpecification;
 
 public class RequestSpec {
-    public static RequestSpecification getRequestSpec() {
+
+    private static RequestSpecBuilder getBaseRequestSpec() {
         return new RequestSpecBuilder()
                 .setContentType("application/json")
                 .setAccept("application/json")
-                .addHeader("X-Client-Name","API-Automation")
-                .log(LogDetail.ALL)
-                .build();
+                .addHeader("X-Client-Name", "API-Automation")
+                .log(LogDetail.ALL);
+    }
+
+    public static RequestSpecification getRequestSpec() {
+        return getBaseRequestSpec().build();
     }
 
     public static RequestSpecification getAuthenticatedRequestSpec() {
-        return new RequestSpecBuilder()
-                .setContentType("application/json")
-                .setAccept("application/json")
-                .addHeader("X-Client-Name","API-Automation")
-                .addHeader("Authorization","Bearer "+ AuthManager.getToken())
-                .log(LogDetail.ALL)
+        return getBaseRequestSpec()
+                .addHeader("Authorization", "Bearer " + AuthManager.getToken())
                 .build();
     }
 }
