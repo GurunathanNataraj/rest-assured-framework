@@ -5,6 +5,7 @@ import com.api.automation.config.ConfigManager;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.specification.RequestSpecification;
+import io.qameta.allure.restassured.AllureRestAssured;
 
 public class RequestSpec {
 
@@ -12,13 +13,16 @@ public class RequestSpec {
         RequestSpecBuilder builder = new RequestSpecBuilder()
                 .setContentType("application/json")
                 .setAccept("application/json")
+                .addFilter(new AllureRestAssured()
+                        .setRequestTemplate("api-request.ftl")
+                        .setResponseTemplate("api-response.ftl"))
                 .addHeader("X-Client-Name", "API-Automation");
-     boolean isLoggingEnabled = ConfigManager.getBooleanProperty("request.logging.enabled");
+        boolean isLoggingEnabled = ConfigManager.getBooleanProperty("request.logging.enabled");
 
-     if(isLoggingEnabled) {
-         builder.log(LogDetail.ALL);
-     }
-     return builder;
+        if (isLoggingEnabled) {
+            builder.log(LogDetail.ALL);
+        }
+        return builder;
     }
 
     public static RequestSpecification getRequestSpec() {

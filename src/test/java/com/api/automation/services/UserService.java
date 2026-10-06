@@ -2,6 +2,7 @@ package com.api.automation.services;
 
 import com.api.automation.constants.Endpoints;
 import com.api.automation.models.User;
+import com.api.automation.models.UserPatchRequest;
 import com.api.automation.specification.RequestSpec;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -42,7 +43,7 @@ public class UserService {
                 .delete(Endpoints.USERS + "/" + userId);
     }
 
-    public Response patchUser(int userId, User user) {
+    public Response patchUser(int userId, UserPatchRequest user) {
         return RestAssured
                 .given()
                 .spec(RequestSpec.getRequestSpec())

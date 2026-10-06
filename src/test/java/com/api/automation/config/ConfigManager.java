@@ -7,38 +7,38 @@ import java.util.Properties;
 public class ConfigManager {
     private static final Properties properties = new Properties();
 
-   static {
-       try(InputStream inputStream = ConfigManager.class.getClassLoader().getResourceAsStream("config/config.properties")) {
-           if (inputStream==null) {
-               throw new RuntimeException("config.properties file not found");
-           }
-           properties.load(inputStream);
-       } catch (IOException e) {
-           throw new RuntimeException("Failed to load config.properties",e);
-       }
-   }
+    static {
+        try (InputStream inputStream = ConfigManager.class.getClassLoader().getResourceAsStream("config/config.properties")) {
+            if (inputStream == null) {
+                throw new RuntimeException("config.properties file not found");
+            }
+            properties.load(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load config.properties", e);
+        }
+    }
 
-   public static String getProperty(String key) {
+    public static String getProperty(String key) {
         String systemProperty = System.getProperty(key);
         if (systemProperty != null && !systemProperty.isBlank()) {
             return systemProperty;
         }
         String value = properties.getProperty(key);
-        if(value == null || value.isBlank()) {
-            throw new RuntimeException("Missing config property : "+key);
+        if (value == null || value.isBlank()) {
+            throw new RuntimeException("Missing config property: " + key);
         }
         return value;
-   }
+    }
 
-   public static Boolean getBooleanProperty(String key) {
-      return Boolean.parseBoolean(getProperty(key));
-   }
+    public static boolean getBooleanProperty(String key) {
+        return Boolean.parseBoolean(getProperty(key));
+    }
 
-   public static Integer getIntProperty(String key) {
-       return Integer.parseInt(getProperty(key));
-   }
+    public static int getIntProperty(String key) {
+        return Integer.parseInt(getProperty(key));
+    }
 
-   public static Long getLongProperty(String key) {
-       return Long.parseLong(getProperty(key));
-   }
+    public static long getLongProperty(String key) {
+        return Long.parseLong(getProperty(key));
+    }
 }

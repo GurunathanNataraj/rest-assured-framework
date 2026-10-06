@@ -10,35 +10,33 @@ public class ResponseSpec {
     private static ResponseSpecBuilder getBaseResponseSpec() {
         ResponseSpecBuilder builder = new ResponseSpecBuilder();
 
-        boolean isLoggingEnabled =ConfigManager.getBooleanProperty("response.logging.enabled");
+        boolean isLoggingEnabled = ConfigManager.getBooleanProperty("response.logging.enabled");
         if (isLoggingEnabled) {
             builder.log(LogDetail.ALL);
         }
         return builder;
     }
 
-    public static ResponseSpecification statusCode200() {
+    public static ResponseSpecification statusCode(int expectedStatusCode) {
         return getBaseResponseSpec()
-                .expectStatusCode(200)
+                .expectStatusCode(expectedStatusCode)
                 .build();
+    }
+
+    public static ResponseSpecification statusCode200() {
+        return statusCode(200);
     }
 
     public static ResponseSpecification statusCode201() {
-        return getBaseResponseSpec()
-                .expectStatusCode(201)
-                .build();
+        return statusCode(201);
     }
 
     public static ResponseSpecification statusCode400() {
-        return getBaseResponseSpec()
-                .expectStatusCode(400)
-                .build();
+        return statusCode(400);
     }
 
     public static ResponseSpecification statusCode404() {
-        return getBaseResponseSpec()
-                .expectStatusCode(404)
-                .build();
+        return statusCode(404);
     }
 
 }

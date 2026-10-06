@@ -1,6 +1,7 @@
 package com.api.automation.assertions;
 
 import com.api.automation.models.User;
+import com.api.automation.models.UserPatchRequest;
 
 import static org.testng.Assert.assertEquals;
 
@@ -35,6 +36,10 @@ public class UserAssertions {
 
     public static void assertUserAddressStreet(User actualUser, User expectedUser) {
         assertEquals(actualUser.getAddress().getStreet(), expectedUser.getAddress().getStreet());
+    }
+
+    public static void assertPatchedUserName(User actualUser, UserPatchRequest expectedUser) {
+        assertEquals(actualUser.getName(),expectedUser.getName());
     }
 }
 
