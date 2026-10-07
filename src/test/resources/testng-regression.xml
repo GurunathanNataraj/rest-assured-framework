@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="API Regression Suite" parallel="methods" thread-count="5">
+    <test name="User API Regression Tests">
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.api.automation.UserAPITest"/>
+        </classes>
+    </test>
+</suite>

@@ -6,6 +6,23 @@ Run the parallel TestNG suite:
 mvn clean test
 ```
 
+## Select a suite
+
+By default, Maven runs `src/test/resources/testng.xml` (all tests).
+Override `suiteXmlFile` to select a suite without editing the POM:
+
+```powershell
+# Smoke: smoke-group tests, up to two methods at a time
+mvn clean test "-DsuiteXmlFile=src/test/resources/testng-smoke.xml"
+
+# Regression: regression-group tests, up to five methods at a time
+mvn clean test "-DsuiteXmlFile=src/test/resources/testng-regression.xml"
+```
+
+The selected XML controls group selection and parallel settings. Quote the
+complete `-D` argument in PowerShell. Existing environment/logging overrides can
+be combined with suite selection. IntelliJ can still run each XML directly.
+
 ## Allure reporting
 
 TestNG results, failures, timings, and data-provider parameters are written to

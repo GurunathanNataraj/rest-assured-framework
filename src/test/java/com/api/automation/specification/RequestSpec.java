@@ -2,15 +2,18 @@ package com.api.automation.specification;
 
 import com.api.automation.auth.AuthManager;
 import com.api.automation.config.ConfigManager;
+import com.api.automation.config.HttpConfig;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.specification.RequestSpecification;
-import io.qameta.allure.restassured.AllureRestAssured;
 
 public class RequestSpec {
 
     private static RequestSpecBuilder getBaseRequestSpec() {
+
         RequestSpecBuilder builder = new RequestSpecBuilder()
+                .setConfig(HttpConfig.getHttpTimeout())
                 .setContentType("application/json")
                 .setAccept("application/json")
                 .addFilter(new AllureRestAssured()
