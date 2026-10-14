@@ -8,6 +8,7 @@
         </groups>
         <classes>
             <class name="com.api.automation.UserAPITest"/>
+            <class name="com.api.automation.AuthAPITest"/>
         </classes>
     </test>
 </suite>
